@@ -1,0 +1,45 @@
+import random
+
+
+questions = [
+    ("A legitimate email from your bank will always address you by name. (True/False)", "False"),
+    ("A website with a valid SSL certificate guarantees it's safe. (True/False)", "False"),
+    ("It's safe to click a link in an email if you know the sender. (True/False)", "False"),
+    ("Phishing attempts can only happen through email. (True/False)", "False"),
+    ("The best way to verify an email from your bank is to click the link and log in. (True/False)", "False"),
+]
+
+
+def ask_question(question):
+  print(question[0])
+  answer = input("Your answer (True/False): ")
+  return answer.lower() == question[1].lower()
+
+
+print("Welcome to the Phishing Awareness Quiz!")
+
+
+random.shuffle(questions)
+
+# Track score
+score = 0
+
+
+for question in questions:
+  if ask_question(question):
+    score += 1
+    print("Correct!")
+  else:
+    print("Incorrect. The answer is", question[1])
+
+print("\n--- Quiz Results ---")
+print(f"You answered {score} out of {len(questions)} questions correctly.")
+
+if score >= len(questions) * 0.8:
+  print("Excellent! You're well-prepared to spot phishing attempts.")
+elif score >= len(questions) * 0.6:
+  print("Good job! Keep practicing to stay sharp.")
+else:
+  print("Remember, vigilance is key! Review the training materials for more tips.")
+
+print("\nThank you for participating!")
